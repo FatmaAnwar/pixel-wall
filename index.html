@@ -5,112 +5,469 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>حيطة البيكسل المصرية</title>
 <meta name="description" content="حيطة للمشاريع المصرية الصغيرة. المربع بـ 300 جنيه وجزء من كل حجز للخير وشنط رمضان.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%94%BA%3C/text%3E%3C/svg%3E">
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a1628'/%3E%3Crect x='4' y='4' width='10' height='10' fill='%230d8f86'/%3E%3Crect x='18' y='4' width='10' height='10' fill='%23c4922a'/%3E%3Crect x='4' y='18' width='10' height='10' fill='%23c4922a'/%3E%3Crect x='18' y='18' width='10' height='10' fill='%230d8f86'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
   color-scheme:light;
-  --bg:#eef3fa;--bg2:#e0ebf7;--card:#ffffff;--ink:#0e2140;--muted:#566884;--line:#d5deec;
-  --cell:#e6edf7;--accent:#0b8a84;--accent2:#12a79f;--gold:#a87000;--bad:#c0392b;--on-accent:#ffffff;--shadow:0 8px 28px rgba(16,34,63,.08);
+  --ink:#0a1628;
+  --ink-soft:#1c334f;
+  --muted:#5a6d82;
+  --line:#d3deea;
+  --paper:#f7f4ef;
+  --paper2:#e8eef6;
+  --cell:#dfe8f3;
+  --surface:#ffffff;
+  --accent:#0d8f86;
+  --accent-deep:#086f69;
+  --brass:#c4922a;
+  --brass-soft:#e8c56a;
+  --bad:#b42318;
+  --on-accent:#ffffff;
+  --shadow:0 18px 50px rgba(10,22,40,.1);
+  --radius:18px;
+  --font-display:"Cairo",Tahoma,sans-serif;
+  --font-body:"IBM Plex Sans Arabic",Tahoma,sans-serif;
 }
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  color-scheme:dark;--bg:#091428;--bg2:#0f2347;--card:#122448;--ink:#ecf2fc;--muted:#9fb2d2;--line:#25406b;
-  --cell:#17305a;--accent:#2fc7bd;--accent2:#5fe0d6;--gold:#f0c24a;--bad:#ff7a6b;--on-accent:#04201e;--shadow:0 8px 28px rgba(0,0,0,.35);}}
-:root[data-theme="dark"]{color-scheme:dark;--bg:#091428;--bg2:#0f2347;--card:#122448;--ink:#ecf2fc;--muted:#9fb2d2;--line:#25406b;
-  --cell:#17305a;--accent:#2fc7bd;--accent2:#5fe0d6;--gold:#f0c24a;--bad:#ff7a6b;--on-accent:#04201e;--shadow:0 8px 28px rgba(0,0,0,.35);}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:linear-gradient(180deg,var(--bg2),var(--bg) 420px) var(--bg);color:var(--ink);font-family:"Readex Pro",Tahoma,Arial,sans-serif;line-height:1.7}
-.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 48px}
-.pill{display:inline-block;background:var(--card);border:1px solid var(--line);color:var(--gold);border-radius:999px;padding:4px 14px;font-size:.85rem;font-weight:600}
-h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.2;margin:14px 0 10px;font-weight:700}
-h1 span{background:linear-gradient(90deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{color:var(--muted);margin:0 0 24px;max-width:62ch;font-size:1.05rem}
-h2{font-size:1.2rem;margin:34px 0 12px}
-.grid4{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-@media(max-width:760px){.grid4{grid-template-columns:repeat(2,1fr)}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
-.card b{display:block;font-size:1.25rem;font-weight:700}
-.card span{font-size:.85rem;color:var(--muted)}
-.card i{display:block;height:4px;border-radius:4px;margin-bottom:10px;background:var(--accent)}
-.c2 i{background:var(--gold)}.c3 i{background:var(--accent2)}.c4 i{background:var(--muted)}
-.mini{font-size:.8rem;color:var(--muted)}
-.board{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow);overflow:auto;max-height:82vh}
-canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;touch-action:none;cursor:crosshair;border-radius:10px}
-.zb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
-.zb b{min-width:2.5em;text-align:center}
-.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow)}
-.info b{color:var(--gold)}
-button{font:inherit;border:0;border-radius:12px;padding:10px 20px;cursor:pointer;font-weight:600;transition:transform .12s,opacity .12s}
-button:hover:not(:disabled){transform:translateY(-1px)}
-.buy{background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--on-accent)}
-button:disabled{opacity:.45;cursor:not-allowed}
-.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.zb button{padding:8px 14px}
-.zb button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.pk{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.75;
+  background:
+    radial-gradient(1200px 600px at 80% -10%,rgba(13,143,134,.18),transparent 55%),
+    radial-gradient(900px 500px at 0% 20%,rgba(196,146,42,.12),transparent 50%),
+    linear-gradient(180deg,var(--paper2) 0%,var(--paper) 40%,#f3f6fa 100%);
+  overflow-x:hidden;
+}
+a{color:inherit}
+button,input,textarea{font:inherit}
+button{
+  border:0;
+  border-radius:12px;
+  padding:12px 22px;
+  cursor:pointer;
+  font-weight:600;
+  transition:transform .18s ease, background .18s ease, border-color .18s ease, opacity .18s ease;
+}
+button:hover:not(:disabled){transform:translateY(-2px)}
+button:disabled{opacity:.4;cursor:not-allowed;transform:none}
+button:focus-visible,a:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.buy{
+  background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+  color:var(--on-accent);
+  box-shadow:0 10px 24px rgba(13,143,134,.28);
+}
+.ghost{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.55);
+}
+.lnk{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+  border-radius:12px;
+  padding:12px 22px;
+  font-weight:600;
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  align-items:end;
+  padding:clamp(24px,4vw,48px) clamp(16px,4vw,40px) clamp(40px,7vw,72px);
+  color:#f4f7fb;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(160deg,rgba(10,22,40,.92) 10%,rgba(8,55,60,.78) 55%,rgba(10,22,40,.88) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.08' stroke-width='1'%3E%3Cpath d='M0 20h160M0 40h160M0 60h160M0 80h160M0 100h160M0 120h160M0 140h160M20 0v160M40 0v160M60 0v160M80 0v160M100 0v160M120 0v160M140 0v160'/%3E%3C/g%3E%3Crect x='20' y='20' width='20' height='20' fill='%230d8f86' fill-opacity='.55'/%3E%3Crect x='80' y='40' width='20' height='20' fill='%23c4922a' fill-opacity='.45'/%3E%3Crect x='120' y='100' width='20' height='20' fill='%230d8f86' fill-opacity='.4'/%3E%3Crect x='40' y='120' width='20' height='20' fill='%23c4922a' fill-opacity='.35'/%3E%3C/svg%3E");
+  background-size:auto, 160px 160px;
+  animation:bgDrift 28s linear infinite;
+}
+.hero-glow{
+  position:absolute;
+  inset:auto auto -20% -10%;
+  width:60vw;
+  height:60vw;
+  max-width:640px;
+  max-height:640px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(13,143,134,.35),transparent 68%);
+  z-index:-1;
+  animation:glowFloat 8s ease-in-out infinite alternate;
+}
+.hero-copy{max-width:760px;width:min(760px,100%)}
+.brand{
+  margin:0;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(2.6rem,9vw,5.4rem);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  opacity:0;
+  transform:translateY(24px);
+  animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .1s forwards;
+}
+.brand em{
+  font-style:normal;
+  color:var(--brass-soft);
+}
+.hero-lead{
+  margin:18px 0 0;
+  max-width:36ch;
+  font-size:clamp(1.05rem,2.4vw,1.25rem);
+  color:rgba(244,247,251,.82);
+  opacity:0;
+  transform:translateY(24px);
+  animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .28s forwards;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+  opacity:0;
+  transform:translateY(24px);
+  animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .42s forwards;
+}
+.hero-actions .buy{padding:14px 26px;font-size:1.05rem}
+.hero-actions .ghost{
+  color:#f4f7fb;
+  border-color:rgba(244,247,251,.28);
+  background:rgba(255,255,255,.06);
+}
+.price-line{
+  margin:18px 0 0;
+  color:rgba(232,197,106,.95);
+  font-weight:600;
+  font-size:.95rem;
+  opacity:0;
+  animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .55s forwards;
+}
+
+/* Sections */
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,28px)}
+section{padding:clamp(48px,8vw,88px) 0}
+.section-title{
+  margin:0 0 10px;
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem,3.5vw,2.15rem);
+  font-weight:800;
+  line-height:1.25;
+}
+.section-lead{
+  margin:0 0 28px;
+  color:var(--muted);
+  max-width:48ch;
+  font-size:1.02rem;
+}
+
+/* Impact split */
+.impact-bar{
+  display:flex;
+  height:18px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#d7e1ed;
+  margin-bottom:22px;
+}
+.impact-bar span{display:block;height:100%}
+.impact-bar .i1{width:12.5%;background:#0d8f86}
+.impact-bar .i2{width:12.5%;background:#1aa39a}
+.impact-bar .i3{width:17.5%;background:#c4922a}
+.impact-bar .i4{width:7.5%;background:#8a6a2a}
+.impact-bar .i5{width:50%;background:#0a1628}
+.impact-list{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px 18px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+@media(max-width:860px){.impact-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.impact-list{grid-template-columns:1fr}}
+.impact-list li{
+  display:grid;
+  gap:4px;
+  padding-top:10px;
+  border-top:3px solid var(--line);
+}
+.impact-list li:nth-child(1){border-color:#0d8f86}
+.impact-list li:nth-child(2){border-color:#1aa39a}
+.impact-list li:nth-child(3){border-color:#c4922a}
+.impact-list li:nth-child(4){border-color:#8a6a2a}
+.impact-list li:nth-child(5){border-color:#0a1628}
+.impact-list b{
+  font-family:var(--font-display);
+  font-size:1.35rem;
+  font-weight:800;
+}
+.impact-list span{color:var(--muted);font-size:.9rem}
+.note{color:var(--muted);font-size:.86rem;margin:18px 0 0}
+
+/* Board */
+#board.board-section{
+  background:linear-gradient(180deg,rgba(255,255,255,.55),transparent 40%);
+}
+.board-tools{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.board-tools b{
+  min-width:2.5em;
+  text-align:center;
+  font-family:var(--font-display);
+}
+.board-tools .ghost{padding:8px 14px}
+.board-tools .ghost[aria-pressed="true"]{
+  background:var(--accent);
+  color:var(--on-accent);
+  border-color:var(--accent);
+}
+.mini{font-size:.84rem;color:var(--muted)}
+.board{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:12px;
+  box-shadow:var(--shadow);
+  overflow:auto;
+  max-height:82vh;
+}
+canvas{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1/1;
+  touch-action:none;
+  cursor:crosshair;
+  border-radius:12px;
+  background:var(--cell);
+}
+.bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:14px;
+  padding:16px 18px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.info{color:var(--ink-soft)}
+.info b{color:var(--brass);font-family:var(--font-display)}
+
+/* Bags */
+.bags-head{margin-bottom:8px}
+.bags-goal{
+  font-family:var(--font-display);
+  font-size:clamp(1.8rem,4vw,2.4rem);
+  font-weight:800;
+  margin:0 0 6px;
+}
+.pk{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:22px;
+}
 @media(max-width:760px){.pk{grid-template-columns:repeat(2,1fr)}}
-.pk button{background:var(--cell);color:var(--ink);border:1px solid var(--line);display:flex;flex-direction:column;gap:2px;padding:12px 8px}
-.pk button small{color:var(--gold);font-weight:700}
-.note{color:var(--muted);font-size:.82rem;margin-top:14px}
-dialog{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:20px;width:min(440px,92vw);box-shadow:var(--shadow)}
-dialog::backdrop{background:rgba(5,12,28,.6)}
-dialog h3{margin:0 0 4px}
-label{display:block;margin-top:12px;font-size:.9rem;color:var(--muted)}
-input{display:block;width:100%;margin-top:4px;font:inherit;color:var(--ink);background:var(--cell);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.pk button{
+  background:var(--surface);
+  color:var(--ink);
+  border:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  padding:18px 12px;
+  border-radius:14px;
+  box-shadow:0 8px 20px rgba(10,22,40,.04);
+}
+.pk button:hover:not(:disabled){
+  border-color:var(--accent);
+  background:linear-gradient(180deg,#fff, #f2fbfa);
+}
+.pk button small{
+  color:var(--brass);
+  font-weight:700;
+  font-family:var(--font-display);
+  font-size:1rem;
+}
+
+/* Dialogs */
+dialog{
+  background:var(--surface);
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:24px;
+  width:min(440px,92vw);
+  box-shadow:var(--shadow);
+}
+dialog::backdrop{background:rgba(8,16,30,.62);backdrop-filter:blur(4px)}
+dialog h3{
+  margin:0 0 6px;
+  font-family:var(--font-display);
+  font-size:1.35rem;
+}
+label{display:block;margin-top:14px;font-size:.92rem;color:var(--muted)}
+input,textarea{
+  display:block;
+  width:100%;
+  margin-top:6px;
+  color:var(--ink);
+  background:#f3f6fa;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 13px;
+}
+textarea{resize:none}
 .err{color:var(--bad);min-height:1.4em;margin:10px 0 0;font-size:.88rem}
-.btns{display:flex;gap:8px;flex-wrap:wrap}
-.lnk{display:inline-flex;align-items:center;text-decoration:none;border-radius:12px;padding:10px 20px;font-weight:600}
-textarea{display:block;width:100%;font:inherit;color:var(--ink);background:var(--cell);border:1px solid var(--line);border-radius:10px;padding:9px 12px;resize:none}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+
+footer{
+  padding:28px clamp(16px,4vw,28px) 40px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.86rem;
+}
+
+@keyframes riseIn{
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes bgDrift{
+  from{background-position:0 0, 0 0}
+  to{background-position:0 0, 160px 80px}
+}
+@keyframes glowFloat{
+  from{transform:translate(0,0)}
+  to{transform:translate(12%, -8%)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .brand,.hero-lead,.hero-actions,.price-line{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <span class="pill">رمضان 2027 قرّب</span>
-  <h1>حيطة <span>البيكسل</span> المصرية</h1>
-  <p class="lead">حيطة للمشاريع المصرية الصغيرة: محلات، شغل هاند ميد، وفريلانسرز. المربع بـ 300 جنيه، وجزء من كل حجز بيروح لمستشفى 57357 واللاجئين الفلسطينيين وشنط رمضان.</p>
 
-  <h2>فين بتروح فلوسك؟</h2>
-  <div class="grid4">
-    <div class="card"><i></i><b>12.5%</b><span>مستشفى 57357</span></div>
-    <div class="card c2"><i></i><b>12.5%</b><span>اللاجئين الفلسطينيين</span></div>
-    <div class="card c3"><i></i><b>17.5%</b><span>شنط رمضان</span></div>
-    <div class="card c4"><i></i><b>7.5%</b><span>صندوق الزكاة</span></div>
-    <div class="card"><i style="background:var(--ink)"></i><b>50%</b><span>تشغيل المشروع وربحه</span></div>
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <h1 class="brand">حيطة <em>البيكسل</em> المصرية</h1>
+    <p class="hero-lead">مساحة رقمية للمشاريع المصرية الصغيرة — محلات، هاند ميد، وفريلانسرز — وجزء من كل حجز بيروح للخير.</p>
+    <div class="hero-actions">
+      <a class="buy lnk" href="#board">اختار مساحتك</a>
+      <a class="ghost lnk" href="#impact">فين بتروح فلوسك؟</a>
+    </div>
+    <p class="price-line">المربع 10×10 بيكسل بـ 300 جنيه</p>
   </div>
-  <p class="note">النسب من صافي كل حجز بعد رسوم الدفع: النص للخير موزع على الأربع بنود، والنص التاني لتشغيل المشروع وربحه.</p>
+</header>
 
-  <h2>اختار مساحتك على الحيطة</h2>
-  <div class="zb"><button class="ghost" id="zout" aria-label="تصغير">−</button><b id="zl">1×</b><button class="ghost" id="zin" aria-label="تكبير">+</button><button class="ghost" id="zp" aria-pressed="false">✋ تحريك</button><span class="mini">كبّر عشان تشوف البيكسلز، وفعّل التحريك عشان تتنقل على الحيطة.</span></div>
-  <div class="board"><canvas id="c" width="1000" height="1000" aria-label="شبكة بيكسل 1000 في 1000"></canvas></div>
-  <div class="bar">
-    <div class="info" id="info">اسحب على الحيطة عشان تختار مساحة. المربع الواحد 10×10 بيكسل.</div>
-    <button class="buy" id="buy" disabled>احجز المساحة</button>
+<main>
+  <section id="impact">
+    <div class="wrap">
+      <h2 class="section-title">فين بتروح فلوسك؟</h2>
+      <p class="section-lead">من صافي كل حجز بعد رسوم الدفع: النص للخير، والنص التاني لتشغيل المشروع وربحه.</p>
+      <div class="impact-bar" aria-hidden="true">
+        <span class="i1"></span><span class="i2"></span><span class="i3"></span><span class="i4"></span><span class="i5"></span>
+      </div>
+      <ul class="impact-list">
+        <li><b>12.5%</b><span>مستشفى 57357</span></li>
+        <li><b>12.5%</b><span>اللاجئين الفلسطينيين</span></li>
+        <li><b>17.5%</b><span>شنط رمضان</span></li>
+        <li><b>7.5%</b><span>صندوق الزكاة</span></li>
+        <li><b>50%</b><span>تشغيل المشروع وربحه</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="board" class="board-section">
+    <div class="wrap">
+      <h2 class="section-title">اختار مساحتك على الحيطة</h2>
+      <p class="section-lead">اسحب على الشبكة عشان تحدد مساحتك. كبّر لو حابب تشوف التفاصيل أدق.</p>
+
+      <div class="board-tools">
+        <button class="ghost" id="zout" aria-label="تصغير">−</button>
+        <b id="zl">1×</b>
+        <button class="ghost" id="zin" aria-label="تكبير">+</button>
+        <button class="ghost" id="zp" aria-pressed="false">تحريك</button>
+        <span class="mini">كبّر عشان تشوف البيكسلز، وفعّل التحريك عشان تتنقل على الحيطة.</span>
+      </div>
+
+      <div class="board">
+        <canvas id="c" width="1000" height="1000" aria-label="شبكة بيكسل 1000 في 1000"></canvas>
+      </div>
+
+      <div class="bar">
+        <div class="info" id="info">اسحب على الحيطة عشان تختار مساحة. المربع الواحد 10×10 بيكسل.</div>
+        <button class="buy" id="buy" disabled>احجز المساحة</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="bags">
+    <div class="wrap">
+      <div class="bags-head">
+        <p class="bags-goal">الهدف: 1,000 شنطة رمضان</p>
+        <p class="section-lead" style="margin:0">الشنطة بـ 300 جنيه. ساهم بشنطة أو أكتر:</p>
+      </div>
+      <div class="pk" id="pk"></div>
+      <p class="note" id="soon"></p>
+    </div>
+  </section>
+</main>
+
+<footer>حيطة البيكسل المصرية — رمضان 2027</footer>
+
+<dialog id="dlg2">
+  <h3>ابعت الرسالة دي على واتساب</h3>
+  <p class="note" style="margin:0">انسخ الرسالة وابعتها على الرقم ده:</p>
+  <p dir="ltr" id="wNum" style="font-weight:700;font-size:1.2rem;margin:8px 0;text-align:right;font-family:var(--font-display)"></p>
+  <textarea id="wMsg" readonly rows="7"></textarea>
+  <p class="note" id="wOk" style="min-height:1.4em;margin:6px 0 0"></p>
+  <div class="btns">
+    <button class="ghost" id="wClose">قفل</button>
+    <button class="buy" id="wCopy">نسخ الرسالة</button>
+    <a class="buy lnk" id="wLink" target="_blank" rel="noopener">افتح واتساب</a>
   </div>
+</dialog>
 
-  <h2>تجميعات شنط رمضان</h2>
-  <div class="card">
-    <b>الهدف: 1,000 شنطة</b>
-    <span>الشنطة بـ 300 جنيه. ساهم بشنطة أو أكتر:</span>
-    <div class="pk" id="pk"></div>
+<dialog id="dlg">
+  <h3>بيانات حجزك</h3>
+  <p id="dSum" class="note" style="margin:0"></p>
+  <label>اسم البراند<input id="fName" maxlength="40"></label>
+  <label>يوزر الإنستجرام<input id="fIg" dir="ltr" placeholder="@username" maxlength="31" autocapitalize="none" autocomplete="off"></label>
+  <p class="note">هنكمل الدفع وإرسال الصورة معاك على واتساب.</p>
+  <p class="err" id="fErr" role="alert"></p>
+  <div class="btns">
+    <button class="ghost" id="dCancel">إلغاء</button>
+    <button class="buy" id="dGo">كمّل على واتساب</button>
   </div>
-  <p class="note" id="soon"></p>
-</div>
-
-<dialog id="dlg2"><h3>ابعت الرسالة دي على واتساب</h3>
-<p class="note" style="margin:0">انسخ الرسالة وابعتها على الرقم ده:</p>
-<p dir="ltr" id="wNum" style="font-weight:700;font-size:1.2rem;margin:8px 0;text-align:right"></p>
-<textarea id="wMsg" readonly rows="7"></textarea>
-<p class="note" id="wOk" style="min-height:1.4em;margin:6px 0 0"></p>
-<div class="btns"><button class="ghost" id="wClose">قفل</button><button class="buy" id="wCopy">نسخ الرسالة</button><a class="buy lnk" id="wLink" target="_blank" rel="noopener">افتح واتساب</a></div></dialog>
-<dialog id="dlg"><h3>بيانات حجزك</h3><p id="dSum" class="note" style="margin:0"></p>
-<label>اسم البراند<input id="fName" maxlength="40"></label>
-<label>يوزر الإنستجرام<input id="fIg" dir="ltr" placeholder="@username" maxlength="31" autocapitalize="none" autocomplete="off"></label>
-<p class="note">هنكمل الدفع وإرسال الصورة معاك على واتساب.</p>
-<p class="err" id="fErr" role="alert"></p>
-<div class="btns"><button class="ghost" id="dCancel">إلغاء</button><button class="buy" id="dGo">كمّل على واتساب</button></div></dialog>
+</dialog>
 
 <script>
 (function(){
@@ -123,11 +480,13 @@ textarea{display:block;width:100%;font:inherit;color:var(--ink);background:var(-
   function draw(){
     var s=cv.width/N;
     ctx.fillStyle=css('--cell');ctx.fillRect(0,0,cv.width,cv.height);
-    ctx.strokeStyle=css('--line');ctx.globalAlpha=.4;ctx.lineWidth=1;ctx.beginPath();
+    ctx.strokeStyle=css('--line');ctx.globalAlpha=.35;ctx.lineWidth=1;ctx.beginPath();
     for(var i=0;i<=N;i++){ctx.moveTo(i*s+.5,0);ctx.lineTo(i*s+.5,cv.height);ctx.moveTo(0,i*s+.5);ctx.lineTo(cv.width,i*s+.5);}
     ctx.stroke();ctx.globalAlpha=1;
-    if(sel){ctx.fillStyle=css('--accent');ctx.globalAlpha=.4;ctx.fillRect(sel.x*s,sel.y*s,sel.w*s,sel.h*s);ctx.globalAlpha=1;
-      ctx.strokeStyle=css('--gold');ctx.lineWidth=3;ctx.strokeRect(sel.x*s+1.5,sel.y*s+1.5,sel.w*s-3,sel.h*s-3);}
+    if(sel){
+      ctx.fillStyle=css('--accent');ctx.globalAlpha=.38;ctx.fillRect(sel.x*s,sel.y*s,sel.w*s,sel.h*s);ctx.globalAlpha=1;
+      ctx.strokeStyle=css('--brass');ctx.lineWidth=3;ctx.strokeRect(sel.x*s+1.5,sel.y*s+1.5,sel.w*s-3,sel.h*s-3);
+    }
   }
   var info=document.getElementById('info'),buy=document.getElementById('buy'),soon=document.getElementById('soon');
   function update(){
@@ -145,7 +504,13 @@ textarea{display:block;width:100%;font:inherit;color:var(--ink);background:var(-
   function setZ(i){zi=Math.max(0,Math.min(Z.length-1,i));cv.style.width=(Z[zi]*100)+'%';zl.textContent=Z[zi]+'×';}
   document.getElementById('zin').addEventListener('click',function(){setZ(zi+1);});
   document.getElementById('zout').addEventListener('click',function(){setZ(zi-1);});
-  zp.addEventListener('click',function(){pan=!pan;zp.setAttribute('aria-pressed',String(pan));zp.textContent=pan?'✋ تحريك (شغال)':'✋ تحريك';cv.style.touchAction=pan?'auto':'none';cv.style.cursor=pan?'grab':'crosshair';});
+  zp.addEventListener('click',function(){
+    pan=!pan;
+    zp.setAttribute('aria-pressed',String(pan));
+    zp.textContent=pan?'تحريك (شغال)':'تحريك';
+    cv.style.touchAction=pan?'auto':'none';
+    cv.style.cursor=pan?'grab':'crosshair';
+  });
 
   var dlg2=document.getElementById('dlg2'),wMsg=document.getElementById('wMsg'),wOk=document.getElementById('wOk');
   document.getElementById('wNum').textContent='+'+WA.replace(/(\d{2})(\d{3})(\d{3})(\d{4})/,'$1 $2 $3 $4');
@@ -154,29 +519,35 @@ textarea{display:block;width:100%;font:inherit;color:var(--ink);background:var(-
   document.getElementById('wCopy').addEventListener('click',function(){
     var done=function(){wOk.textContent='تم نسخ الرسالة. الصقها في واتساب.';};
     wMsg.focus();wMsg.select();
-    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(wMsg.value).then(done,function(){document.execCommand('copy');done();});return;}document.execCommand('copy');done();}catch(e){wOk.textContent='حدد الرسالة وانسخها بإيدك.';}});
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(wMsg.value).then(done,function(){document.execCommand('copy');done();});return;}document.execCommand('copy');done();}catch(e){wOk.textContent='حدد الرسالة وانسخها بإيدك.';}
+  });
   var dlg=document.getElementById('dlg');
   function fErr(t){document.getElementById('fErr').textContent=t;}
   buy.addEventListener('click',function(){
     if(!sel||!WA)return;
     document.getElementById('fName').value='';document.getElementById('fIg').value='';fErr('');
     document.getElementById('dSum').textContent='المساحة '+(sel.w*BLK)+'×'+(sel.h*BLK)+' بيكسل، السعر '+fmt(sel.w*sel.h*PRICE)+' جنيه';
-    dlg.showModal();});
+    dlg.showModal();
+  });
   document.getElementById('dCancel').addEventListener('click',function(){dlg.close();});
   document.getElementById('dGo').addEventListener('click',function(){
     var name=document.getElementById('fName').value.trim(),ig=document.getElementById('fIg').value.trim().replace(/^@/,'');
     if(!name){fErr('اكتب اسم البراند.');return;}
     if(!/^[A-Za-z0-9._]{1,30}$/.test(ig)){fErr('اكتب يوزر إنستجرام صحيح: حروف إنجليزي وأرقام ونقطة وشرطة سفلية بس.');return;}
     openWA('طلب حجز مساحة على حيطة البيكسل المصرية\nالبراند: '+name+'\nإنستجرام: @'+ig+'\nالمساحة: '+(sel.w*BLK)+'×'+(sel.h*BLK)+' بيكسل (بداية من '+(sel.x*BLK)+','+(sel.y*BLK)+')\nالسعر: '+fmt(sel.w*sel.h*PRICE)+' جنيه');
-    dlg.close();});
+    dlg.close();
+  });
 
   var pk=document.getElementById('pk');
   [['شنطة',1],['عيلة × 5',5],['شلة × 20',20],['شركة × 100',100]].forEach(function(p){
-    var b=document.createElement('button');b.innerHTML=p[0]+'<small>'+fmt(p[1]*BAG)+' جنيه</small>';b.disabled=!WA;
-    b.addEventListener('click',function(){openWA('حابب أساهم بـ '+fmt(p[1])+' شنطة رمضان ('+fmt(p[1]*BAG)+' جنيه)');});pk.appendChild(b);});
+    var b=document.createElement('button');
+    b.innerHTML=p[0]+'<small>'+fmt(p[1]*BAG)+' جنيه</small>';
+    b.disabled=!WA;
+    b.addEventListener('click',function(){openWA('حابب أساهم بـ '+fmt(p[1])+' شنطة رمضان ('+fmt(p[1]*BAG)+' جنيه)');});
+    pk.appendChild(b);
+  });
   if(!WA)soon.textContent='الحجز والتبرع بيفتحوا قريبًا.';
 
-  var mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',draw);
   draw();update();
 })();
 </script>
