@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حيطة البيكسل المصرية</title>
+<meta name="description" content="حيطة للمشاريع المصرية الصغيرة. المربع بـ 300 جنيه وجزء من كل حجز للخير وشنط رمضان.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%94%BA%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#eef3fa;--bg2:#e0ebf7;--card:#ffffff;--ink:#0e2140;--muted:#566884;--line:#d5deec;
+  --cell:#e6edf7;--accent:#0b8a84;--accent2:#12a79f;--gold:#a87000;--bad:#c0392b;--on-accent:#ffffff;--shadow:0 8px 28px rgba(16,34,63,.08);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;--bg:#091428;--bg2:#0f2347;--card:#122448;--ink:#ecf2fc;--muted:#9fb2d2;--line:#25406b;
+  --cell:#17305a;--accent:#2fc7bd;--accent2:#5fe0d6;--gold:#f0c24a;--bad:#ff7a6b;--on-accent:#04201e;--shadow:0 8px 28px rgba(0,0,0,.35);}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#091428;--bg2:#0f2347;--card:#122448;--ink:#ecf2fc;--muted:#9fb2d2;--line:#25406b;
+  --cell:#17305a;--accent:#2fc7bd;--accent2:#5fe0d6;--gold:#f0c24a;--bad:#ff7a6b;--on-accent:#04201e;--shadow:0 8px 28px rgba(0,0,0,.35);}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:linear-gradient(180deg,var(--bg2),var(--bg) 420px) var(--bg);color:var(--ink);font-family:"Readex Pro",Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 16px 48px}
+.pill{display:inline-block;background:var(--card);border:1px solid var(--line);color:var(--gold);border-radius:999px;padding:4px 14px;font-size:.85rem;font-weight:600}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.2;margin:14px 0 10px;font-weight:700}
+h1 span{background:linear-gradient(90deg,var(--accent),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);margin:0 0 24px;max-width:62ch;font-size:1.05rem}
+h2{font-size:1.2rem;margin:34px 0 12px}
+.grid4{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:760px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
+.card b{display:block;font-size:1.25rem;font-weight:700}
+.card span{font-size:.85rem;color:var(--muted)}
+.card i{display:block;height:4px;border-radius:4px;margin-bottom:10px;background:var(--accent)}
+.c2 i{background:var(--gold)}.c3 i{background:var(--accent2)}.c4 i{background:var(--muted)}
+.mini{font-size:.8rem;color:var(--muted)}
+.board{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow);overflow:auto;max-height:82vh}
+canvas{display:block;width:100%;height:auto;aspect-ratio:1/1;touch-action:none;cursor:crosshair;border-radius:10px}
+.zb{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.zb b{min-width:2.5em;text-align:center}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow)}
+.info b{color:var(--gold)}
+button{font:inherit;border:0;border-radius:12px;padding:10px 20px;cursor:pointer;font-weight:600;transition:transform .12s,opacity .12s}
+button:hover:not(:disabled){transform:translateY(-1px)}
+.buy{background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--on-accent)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.zb button{padding:8px 14px}
+.zb button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.pk{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+@media(max-width:760px){.pk{grid-template-columns:repeat(2,1fr)}}
+.pk button{background:var(--cell);color:var(--ink);border:1px solid var(--line);display:flex;flex-direction:column;gap:2px;padding:12px 8px}
+.pk button small{color:var(--gold);font-weight:700}
+.note{color:var(--muted);font-size:.82rem;margin-top:14px}
+dialog{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:20px;width:min(440px,92vw);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(5,12,28,.6)}
+dialog h3{margin:0 0 4px}
+label{display:block;margin-top:12px;font-size:.9rem;color:var(--muted)}
+input{display:block;width:100%;margin-top:4px;font:inherit;color:var(--ink);background:var(--cell);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.err{color:var(--bad);min-height:1.4em;margin:10px 0 0;font-size:.88rem}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.lnk{display:inline-flex;align-items:center;text-decoration:none;border-radius:12px;padding:10px 20px;font-weight:600}
+textarea{display:block;width:100%;font:inherit;color:var(--ink);background:var(--cell);border:1px solid var(--line);border-radius:10px;padding:9px 12px;resize:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="pill">رمضان 2027 قرّب</span>
+  <h1>حيطة <span>البيكسل</span> المصرية</h1>
+  <p class="lead">حيطة للمشاريع المصرية الصغيرة: محلات، شغل هاند ميد، وفريلانسرز. المربع بـ 300 جنيه، وجزء من كل حجز بيروح لمستشفى 57357 واللاجئين الفلسطينيين وشنط رمضان.</p>
+
+  <h2>فين بتروح فلوسك؟</h2>
+  <div class="grid4">
+    <div class="card"><i></i><b>12.5%</b><span>مستشفى 57357</span></div>
+    <div class="card c2"><i></i><b>12.5%</b><span>اللاجئين الفلسطينيين</span></div>
+    <div class="card c3"><i></i><b>17.5%</b><span>شنط رمضان</span></div>
+    <div class="card c4"><i></i><b>7.5%</b><span>صندوق الزكاة</span></div>
+    <div class="card"><i style="background:var(--ink)"></i><b>50%</b><span>تشغيل المشروع وربحه</span></div>
+  </div>
+  <p class="note">النسب من صافي كل حجز بعد رسوم الدفع: النص للخير موزع على الأربع بنود، والنص التاني لتشغيل المشروع وربحه.</p>
+
+  <h2>اختار مساحتك على الحيطة</h2>
+  <div class="zb"><button class="ghost" id="zout" aria-label="تصغير">−</button><b id="zl">1×</b><button class="ghost" id="zin" aria-label="تكبير">+</button><button class="ghost" id="zp" aria-pressed="false">✋ تحريك</button><span class="mini">كبّر عشان تشوف البيكسلز، وفعّل التحريك عشان تتنقل على الحيطة.</span></div>
+  <div class="board"><canvas id="c" width="1000" height="1000" aria-label="شبكة بيكسل 1000 في 1000"></canvas></div>
+  <div class="bar">
+    <div class="info" id="info">اسحب على الحيطة عشان تختار مساحة. المربع الواحد 10×10 بيكسل.</div>
+    <button class="buy" id="buy" disabled>احجز المساحة</button>
+  </div>
+
+  <h2>تجميعات شنط رمضان</h2>
+  <div class="card">
+    <b>الهدف: 1,000 شنطة</b>
+    <span>الشنطة بـ 300 جنيه. ساهم بشنطة أو أكتر:</span>
+    <div class="pk" id="pk"></div>
+  </div>
+  <p class="note" id="soon"></p>
+</div>
+
+<dialog id="dlg2"><h3>ابعت الرسالة دي على واتساب</h3>
+<p class="note" style="margin:0">انسخ الرسالة وابعتها على الرقم ده:</p>
+<p dir="ltr" id="wNum" style="font-weight:700;font-size:1.2rem;margin:8px 0;text-align:right"></p>
+<textarea id="wMsg" readonly rows="7"></textarea>
+<p class="note" id="wOk" style="min-height:1.4em;margin:6px 0 0"></p>
+<div class="btns"><button class="ghost" id="wClose">قفل</button><button class="buy" id="wCopy">نسخ الرسالة</button><a class="buy lnk" id="wLink" target="_blank" rel="noopener">افتح واتساب</a></div></dialog>
+<dialog id="dlg"><h3>بيانات حجزك</h3><p id="dSum" class="note" style="margin:0"></p>
+<label>اسم البراند<input id="fName" maxlength="40"></label>
+<label>يوزر الإنستجرام<input id="fIg" dir="ltr" placeholder="@username" maxlength="31" autocapitalize="none" autocomplete="off"></label>
+<p class="note">هنكمل الدفع وإرسال الصورة معاك على واتساب.</p>
+<p class="err" id="fErr" role="alert"></p>
+<div class="btns"><button class="ghost" id="dCancel">إلغاء</button><button class="buy" id="dGo">كمّل على واتساب</button></div></dialog>
+
+<script>
+(function(){
+  var N=100,BLK=10,PRICE=300,BAG=300;
+  var WA='201111137409';
+  var cv=document.getElementById('c'),ctx=cv.getContext('2d');
+  var sel=null,drag=false,start=null,pan=false;
+  function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+  function fmt(n){return Math.round(n).toLocaleString('ar-EG');}
+  function draw(){
+    var s=cv.width/N;
+    ctx.fillStyle=css('--cell');ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.strokeStyle=css('--line');ctx.globalAlpha=.4;ctx.lineWidth=1;ctx.beginPath();
+    for(var i=0;i<=N;i++){ctx.moveTo(i*s+.5,0);ctx.lineTo(i*s+.5,cv.height);ctx.moveTo(0,i*s+.5);ctx.lineTo(cv.width,i*s+.5);}
+    ctx.stroke();ctx.globalAlpha=1;
+    if(sel){ctx.fillStyle=css('--accent');ctx.globalAlpha=.4;ctx.fillRect(sel.x*s,sel.y*s,sel.w*s,sel.h*s);ctx.globalAlpha=1;
+      ctx.strokeStyle=css('--gold');ctx.lineWidth=3;ctx.strokeRect(sel.x*s+1.5,sel.y*s+1.5,sel.w*s-3,sel.h*s-3);}
+  }
+  var info=document.getElementById('info'),buy=document.getElementById('buy'),soon=document.getElementById('soon');
+  function update(){
+    if(!sel){info.innerHTML='اسحب على الحيطة عشان تختار مساحة. المربع الواحد 10×10 بيكسل.';buy.disabled=true;return;}
+    info.innerHTML='المساحة: <b>'+(sel.w*BLK)+'×'+(sel.h*BLK)+'</b> بيكسل، السعر: <b>'+fmt(sel.w*sel.h*PRICE)+' جنيه</b>';
+    buy.disabled=!WA;
+  }
+  function cellAt(e){var r=cv.getBoundingClientRect();return{x:Math.max(0,Math.min(N-1,Math.floor((e.clientX-r.left)/r.width*N))),y:Math.max(0,Math.min(N-1,Math.floor((e.clientY-r.top)/r.height*N)))};}
+  function rectOf(a,b){return{x:Math.min(a.x,b.x),y:Math.min(a.y,b.y),w:Math.abs(a.x-b.x)+1,h:Math.abs(a.y-b.y)+1};}
+  cv.addEventListener('pointerdown',function(e){if(pan)return;drag=true;cv.setPointerCapture(e.pointerId);start=cellAt(e);sel=rectOf(start,start);draw();update();});
+  cv.addEventListener('pointermove',function(e){if(!drag)return;sel=rectOf(start,cellAt(e));draw();update();});
+  cv.addEventListener('pointerup',function(){drag=false;});cv.addEventListener('pointercancel',function(){drag=false;});
+
+  var Z=[1,2,4,8],zi=0,zl=document.getElementById('zl'),zp=document.getElementById('zp');
+  function setZ(i){zi=Math.max(0,Math.min(Z.length-1,i));cv.style.width=(Z[zi]*100)+'%';zl.textContent=Z[zi]+'×';}
+  document.getElementById('zin').addEventListener('click',function(){setZ(zi+1);});
+  document.getElementById('zout').addEventListener('click',function(){setZ(zi-1);});
+  zp.addEventListener('click',function(){pan=!pan;zp.setAttribute('aria-pressed',String(pan));zp.textContent=pan?'✋ تحريك (شغال)':'✋ تحريك';cv.style.touchAction=pan?'auto':'none';cv.style.cursor=pan?'grab':'crosshair';});
+
+  var dlg2=document.getElementById('dlg2'),wMsg=document.getElementById('wMsg'),wOk=document.getElementById('wOk');
+  document.getElementById('wNum').textContent='+'+WA.replace(/(\d{2})(\d{3})(\d{3})(\d{4})/,'$1 $2 $3 $4');
+  function openWA(text){wMsg.value=text;wOk.textContent='';document.getElementById('wLink').href='https://wa.me/'+WA+'?text='+encodeURIComponent(text);dlg2.showModal();}
+  document.getElementById('wClose').addEventListener('click',function(){dlg2.close();});
+  document.getElementById('wCopy').addEventListener('click',function(){
+    var done=function(){wOk.textContent='تم نسخ الرسالة. الصقها في واتساب.';};
+    wMsg.focus();wMsg.select();
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(wMsg.value).then(done,function(){document.execCommand('copy');done();});return;}document.execCommand('copy');done();}catch(e){wOk.textContent='حدد الرسالة وانسخها بإيدك.';}});
+  var dlg=document.getElementById('dlg');
+  function fErr(t){document.getElementById('fErr').textContent=t;}
+  buy.addEventListener('click',function(){
+    if(!sel||!WA)return;
+    document.getElementById('fName').value='';document.getElementById('fIg').value='';fErr('');
+    document.getElementById('dSum').textContent='المساحة '+(sel.w*BLK)+'×'+(sel.h*BLK)+' بيكسل، السعر '+fmt(sel.w*sel.h*PRICE)+' جنيه';
+    dlg.showModal();});
+  document.getElementById('dCancel').addEventListener('click',function(){dlg.close();});
+  document.getElementById('dGo').addEventListener('click',function(){
+    var name=document.getElementById('fName').value.trim(),ig=document.getElementById('fIg').value.trim().replace(/^@/,'');
+    if(!name){fErr('اكتب اسم البراند.');return;}
+    if(!/^[A-Za-z0-9._]{1,30}$/.test(ig)){fErr('اكتب يوزر إنستجرام صحيح: حروف إنجليزي وأرقام ونقطة وشرطة سفلية بس.');return;}
+    openWA('طلب حجز مساحة على حيطة البيكسل المصرية\nالبراند: '+name+'\nإنستجرام: @'+ig+'\nالمساحة: '+(sel.w*BLK)+'×'+(sel.h*BLK)+' بيكسل (بداية من '+(sel.x*BLK)+','+(sel.y*BLK)+')\nالسعر: '+fmt(sel.w*sel.h*PRICE)+' جنيه');
+    dlg.close();});
+
+  var pk=document.getElementById('pk');
+  [['شنطة',1],['عيلة × 5',5],['شلة × 20',20],['شركة × 100',100]].forEach(function(p){
+    var b=document.createElement('button');b.innerHTML=p[0]+'<small>'+fmt(p[1]*BAG)+' جنيه</small>';b.disabled=!WA;
+    b.addEventListener('click',function(){openWA('حابب أساهم بـ '+fmt(p[1])+' شنطة رمضان ('+fmt(p[1]*BAG)+' جنيه)');});pk.appendChild(b);});
+  if(!WA)soon.textContent='الحجز والتبرع بيفتحوا قريبًا.';
+
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');if(mq.addEventListener)mq.addEventListener('change',draw);
+  draw();update();
+})();
+</script>
+</body>
+</html>
